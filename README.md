@@ -25,7 +25,7 @@ It uses a **hierarchical coarse-to-fine multi-scale autoregressive approach**, p
 3. **Conditional Fine-tuning** integrates patient preoperative data.  
 4. **Thin-Plate Spline (TPS)** reconstructs the 3D surface.
 
-![CAMOS Workflow](docs/camos_workflow.png)  
+![CAMOS Workflow](docs/CAMOS_overall_pipeline_final.pdf)  
 *(Illustrative diagram from the paper)*
 
 ---
