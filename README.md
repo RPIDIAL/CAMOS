@@ -16,7 +16,7 @@ It uses a **hierarchical coarse-to-fine multi-scale autoregressive approach**, p
 - **Large-scale Pretraining**: Robust generative modeling on diverse facial demographics.
 - **Conditional Generation**: Patient-specific prediction using preoperative facial landmarks.
 - **3D Surface Reconstruction**: Outputs full 3D facial meshes for surgical planning.
-
+![CAMOS Workflow](docs/CAMOS_overall_pipeline_final.png)  
 ---
 
 ## Method
@@ -25,8 +25,7 @@ It uses a **hierarchical coarse-to-fine multi-scale autoregressive approach**, p
 3. **Conditional Fine-tuning** integrates patient preoperative data.  
 4. **Thin-Plate Spline (TPS)** reconstructs the 3D surface.
 
-![CAMOS Workflow](docs/CAMOS_overall_pipeline_final.png)  
-*(Illustrative diagram from the paper)*
+![CAMOS Detailed](docs/CAMOS_detail_stages_final.png)  
 
 ---
 
