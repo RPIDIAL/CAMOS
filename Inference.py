@@ -146,7 +146,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--mvqvae_path", type=str)
-    parser.add_argument("--pretrained_path", type=str)
+    parser.add_argument("--cvar_path", type=str)
     parser.add_argument("--data_path1", type=str)
     parser.add_argument("--data_path2", type=str)
     parser.add_argument("--save_path", type=str)
