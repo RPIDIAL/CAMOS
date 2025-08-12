@@ -44,12 +44,6 @@ Due to privacy concerns, patient data is not publicly released.
 ---
 
 ## Citation
-```bibtex
-@inproceedings{lee2025camos,
-  title={Facial Appearance Prediction with Conditional Multi-scale Autoregressive Modeling for Orthognathic Surgical Planning},
-  author={Lee, Jungwook and Xu, Xuanang and Kim, Daeseung and Kuang, Tianshu and Deng, Hannah H. and Song, Xinrui and Soubra, Yasmine and Dharia, Rohan and Liebschner, Michael A.K. and Gateno, Jaime and Yan, Pingkun},
-  year={2025}
-}
 ```
 
 ---
