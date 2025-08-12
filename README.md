@@ -46,7 +46,7 @@ Due to privacy concerns, patient data is not publicly released.
 ## Training
 To train CAMOS model:
 
-'''bash
+```bash
 python train.py \
   --fold 0 \
   --experiment_dir EXPERIMENT_FOLDER \
@@ -54,17 +54,18 @@ python train.py \
   --pretrained_path CAMOS_PRETRAIN_PATH \
   --data_path1 DATA_PATH1 \
   --data_path2 DATA_PATH2
-
+```
 ## Inference
 
 To run inference and save predictions to JSON:
-'''bash
+```bash
 python inference.py \
   --mvqvae_path VQVAE_PATH \
   --cvar_path MODEL_PATH \
   --data_path1 DATA_PATH1 \
   --data_path2 DATA_PATH2 \
   --save_path SAVE_FOLDER
+```
 
 ## Citation
 
