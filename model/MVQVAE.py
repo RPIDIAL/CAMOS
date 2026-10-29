@@ -9,7 +9,13 @@ import numpy as np
 from timm.models.vision_transformer import Attention, Mlp
 from torch.nn import functional as F
 
-from batchgenerators.utilities.file_and_folder_operations import *
+import os, json
+
+def load_json(path):
+    with open(path) as f:
+        return json.load(f)
+
+DEFAULT_TEMPLATE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'assets')
 
 def modulate(x, shift, scale):
     return x * (1 + scale.unsqueeze(1)) + shift.unsqueeze(1)
@@ -77,7 +83,8 @@ class MVQVAE_Transformer(nn.Module):
         beta=0.25,
         dist_typ='euc',
         scale=10,
-        device='cpu'
+        device='cpu',
+        template_dir=None
     ):
         super().__init__()
         self.in_channels = in_channels
@@ -103,7 +110,7 @@ class MVQVAE_Transformer(nn.Module):
         self.final_layer = FinalLayer(hidden_size, self.out_channels)
         self.initialize_weights()
 
-        self.vq_layer = MVectorQuantizer(num_cbembed, dim_cbembed, beta, self.pos_embed, dist_typ, scale, device)
+        self.vq_layer = MVectorQuantizer(num_cbembed, dim_cbembed, beta, self.pos_embed, dist_typ, scale, device, template_dir)
 
     def initialize_weights(self):
         # Initialize transformer layers:
@@ -202,7 +209,7 @@ class MVectorQuantizer(nn.Module):
     def __init__(self,
                  num_embeddings: int,
                  embedding_dim: int,
-                 beta: float = 0.25, pos_embed=None, dist_typ='euc', scale=10, device='cpu'):
+                 beta: float = 0.25, pos_embed=None, dist_typ='euc', scale=10, device='cpu', template_dir=None):
         super(MVectorQuantizer, self).__init__()
         self.K = num_embeddings
         self.D = embedding_dim
@@ -214,16 +221,17 @@ class MVectorQuantizer(nn.Module):
         ######## NEW ########
         #optimal/src/MVQVAE_preprocessing.ipynb
         self.multi_points=[]
-        data=load_json('template_ms8_idx_v7.json')
+        template_dir = template_dir or DEFAULT_TEMPLATE_DIR
+        data=load_json(os.path.join(template_dir, f'template_ms{scale}_idx_v7.json'))
 
         self.multi_points_nb=data['multi_points']
         for mnb in self.multi_points_nb:
             self.multi_points.append(data[str(mnb)])
 
         self.SN = len(self.multi_points)
-        self.template_pos=torch.tensor(np.load('template_pos.npy')).to(device)
-        self.euc_dist=torch.tensor(np.load('template_euc.npy')).to(device)
-        self.geo_dist=torch.tensor(np.load('template_geo.npy')).to(device)
+        self.template_pos=torch.tensor(np.load(os.path.join(template_dir, 'template_pos.npy'))).to(device)
+        self.euc_dist=torch.tensor(np.load(os.path.join(template_dir, 'template_euc.npy'))).to(device)
+        self.geo_dist=torch.tensor(np.load(os.path.join(template_dir, 'template_geo.npy'))).to(device)
         ######## NEW ########
         self.pos_embed = pos_embed
         self.dist_typ=dist_typ

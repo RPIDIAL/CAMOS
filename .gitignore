@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+work/
+results/
+weights/
+validation/__pycache__/

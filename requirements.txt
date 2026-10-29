@@ -1,0 +1,14 @@
+# Core (tested with Python 3.9)
+numpy==1.26.4
+scipy
+trimesh==4.0.10
+shapely
+pillow
+tqdm
+torch>=2.1
+timm==0.6.12
+mediapipe==0.10.9
+# Rendering. On a desktop with a display the regular wheel works:
+vtk==9.3.1
+# On a headless Linux server replace the line above with the OSMesa build:
+#   pip install --extra-index-url https://wheels.vtk.org vtk-osmesa==9.3.1

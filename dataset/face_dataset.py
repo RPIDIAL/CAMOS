@@ -4,9 +4,9 @@ import torch
 import random
 import numpy as np
 from torch.utils.data import Dataset
-from batchgenerators.utilities.file_and_folder_operations import *
+from camos.io_utils import load_json
 
-from mvp_data_utils import augment_cloud
+from .mvp_data_utils import augment_cloud
 
 
 ## Indexes followed Mediapipe landmarks

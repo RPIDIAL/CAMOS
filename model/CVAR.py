@@ -5,7 +5,7 @@ from typing import Optional, Tuple, Union
 import torch
 import torch.nn as nn
 
-from basic_cvar import AdaLNSABlock, SABlock, sample_with_top_k_top_p_
+from .basic_cvar import AdaLNSABlock, SABlock, sample_with_top_k_top_p_
 
 
 class SharedAdaLin(nn.Linear):
